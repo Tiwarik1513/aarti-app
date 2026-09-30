@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "io.github.tiwarik1513.aartiapp",
+        "sha256_cert_fingerprints": ["8E:AE:47:57:ED:89:EA:2B:BB:EE:48:71:7D:75:D5:87:C8:0F:42:62:92:0F:2B:11:A3:84:60:09:4A:B0:95:EB"]
+      }
+    }]
