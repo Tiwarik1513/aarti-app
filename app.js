@@ -299,20 +299,32 @@ function showDonationNudge(count) {
   const overlay = document.createElement('div');
   overlay.className = 'nudge-overlay';
   overlay.id = 'nudge-overlay';
+  const hi = state.lang === 'hi';
+  const t = hi ? {
+    title: 'आरती संग्रह उपयोगी लगा?',
+    body: 'यह ऐप मुफ़्त है और हमेशा मुफ़्त रहेगा। सहयोग पूरी तरह आपकी इच्छा पर है - अगर यह आपके लिए उपयोगी है, तो चाहें तो UPI से थोड़ा योगदान कर सकते हैं।',
+    support: 'ऐप को सहयोग करें (UPI)',
+    later: 'बाद में',
+    never: 'दोबारा न पूछें'
+  } : {
+    title: 'Finding the aarti app useful?',
+    body: 'The app is free and will always remain free. Contributions are purely voluntary - if you find it useful, you can support it with a small UPI contribution.',
+    support: 'Support the app (UPI)',
+    later: 'Maybe later',
+    never: "Don't ask again"
+  };
   overlay.innerHTML = `
     <div class="nudge-card" role="dialog" aria-modal="true" aria-labelledby="nudge-title">
-      <h2 class="nudge-title" id="nudge-title">आरती संग्रह उपयोगी लगा?</h2>
-      <p class="nudge-subtitle">Finding the aarti app useful?</p>
-      <p class="nudge-body">यह ऐप मुफ़्त है और हमेशा मुफ़्त रहेगा। सहयोग पूरी तरह आपकी इच्छा पर है - अगर यह आपके लिए उपयोगी है, तो चाहें तो UPI से थोड़ा योगदान कर सकते हैं।</p>
-      <p class="nudge-body">The app is free and will always remain free. Contributions are purely voluntary - if you find it useful, you can support it with a small UPI contribution.</p>
+      <h2 class="nudge-title" id="nudge-title">${t.title}</h2>
+      <p class="nudge-body">${t.body}</p>
       <div class="nudge-pay">
-        <a class="donation-button nudge-support" href="${DONATION_LINK}" target="_blank" rel="noopener noreferrer">ऐप को सहयोग करें / Support the app (UPI)</a>
+        <a class="donation-button nudge-support" href="${DONATION_LINK}" target="_blank" rel="noopener noreferrer">${t.support}</a>
         <div class="nudge-upi-row"><span class="donation-label">UPI ID</span><code>${DONATION_UPI}</code><button type="button" class="copy-upi" id="nudge-copy">Copy</button></div>
         <div class="nudge-qr"><img src="qr.png" alt="UPI payment QR for Gunja Tiwari"></div>
       </div>
       <div class="nudge-actions">
-        <button type="button" class="nudge-later" id="nudge-later">बाद में / Maybe later</button>
-        ${count >= 20 ? '<button type="button" class="nudge-never" id="nudge-never">दोबारा न पूछें / Don\'t ask again</button>' : ''}
+        <button type="button" class="nudge-later" id="nudge-later">${t.later}</button>
+        ${count >= 20 ? `<button type="button" class="nudge-never" id="nudge-never">${t.never}</button>` : ''}
       </div>
     </div>`;
   document.body.appendChild(overlay);
