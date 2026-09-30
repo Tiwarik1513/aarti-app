@@ -1,12 +1,12 @@
 /* आरती संग्रह - offline service worker. Precaches the whole app on install and
    serves cache-first, so the installed app works fully without network. */
-const CACHE = 'aarti-pwa-v2';
+const CACHE = 'aarti-pwa-v3';
 const ASSETS = [
   './',
   './index.html',
   './style.css',
   './app.js',
-  './aartis.json',
+  './aartis.js',
   './manifest.webmanifest',
   './shankh.mp3',
   './qr.png',

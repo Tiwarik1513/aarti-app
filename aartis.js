@@ -1,4 +1,4 @@
-[
+const AARTIS_DATA = [
   {
     "category": "गणेश",
     "title": "श्री गणेश आरती",
@@ -399,4 +399,4 @@
     "romanTitle": "Om jay mahavir prabhu",
     "romanLyrics": "Om jay mahavir prabhu,\nswami jay mahavir prabhu .\nkundalpur avtari,\nchamdanpur avtari,\ntrishalanamd vibhu ..\nsidhdharath ghar janme,\nvaibhav tha bhari .\nbal brahmachari vrat,\npalyo tap dhari ..\nOm jay mahavir prabhu.....\natam jnyan viragi,\nsam drishti dhari .\nmaya moh vinashak,\njnyan jyoti jari ..\nOm jay mahavir prabhu.....\njag mem path ahimsa,\nap hi vistaryo .\nhimsa pap mita kar,\nsudharm parichariyo ..\nOm jay mahavir prabhu.....\namar chamd ko sapna,\ntumne parbhu dina .\nmandir tin shekhar ka,\nnirmit hai kina ..\nOm jay mahavir prabhu.....\njaypur nrip bhi tere,\natishay ke sevi .\nek gram tinha dino,\nseva hit yah bhi ..\nOm jay mahavir prabhu.....\njal mem bhinn kamal jo,\nghar mem bal yati .\nraj path sab tyage,\nmata moh hati ..\nOm jay mahavir prabhu.....\nbhumandal chamdanpur,\nmandir madhya lase .\nshamt jinishvar murat,\ndarshan pap lase ..\nOm jay mahavir prabhu.....\njo koi tere dar par,\nichchha kar ave .\ndhan sutt sab kuchh pave,\nsankat mit jave ..\nOm jay mahavir prabhu.....\nnishdin prabhu mandir mem,\njagmag jyot jare .\nham sevak charnOm mem,\nanamd mumd bhare ..\nOm jay mahavir prabhu.....\nOm jay mahavir prabhu,\nswami jay mahavir prabhu .\nkundalpur avtari,\nchamdanpur avtari,\ntrishalanamd vibhu .."
   }
-]
+];

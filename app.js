@@ -282,10 +282,8 @@ function render() {
   window.scrollTo(0, 0);
 }
 
-fetch('aartis.json')
-  .then((r) => r.json())
-  .then((data) => {
-    state.aartis = data;
+{
+    state.aartis = AARTIS_DATA;
     window.addEventListener('hashchange', render);
     window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); state.installPrompt = e; render(); });
     window.addEventListener('appinstalled', () => { state.installPrompt = null; render(); });
@@ -293,7 +291,4 @@ fetch('aartis.json')
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js').catch((err) => console.warn('SW registration failed', err));
     }
-  })
-  .catch(() => {
-    document.getElementById('root').innerHTML = '<div class="page"><p class="empty">आरतियाँ लोड नहीं हो पाईं। कृपया पेज दोबारा खोलें।</p></div>';
-  });
+}
