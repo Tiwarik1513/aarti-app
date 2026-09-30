@@ -1,0 +1,19 @@
+{
+  "id": "./",
+  "name": "आरती संग्रह",
+  "short_name": "आरती",
+  "description": "40 लोकप्रिय हिंदी आरतियाँ, Roman Hindi पाठ, घंटी और शंख की ध्वनि के साथ।",
+  "lang": "hi",
+  "dir": "ltr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fff7ed",
+  "theme_color": "#c2410c",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
