@@ -105,3 +105,4 @@ a{color:var(--ds-teal);}
 .nudge-later,.nudge-never{border:1px solid var(--ds-hairline);border-radius:10px;background:#fff;color:var(--ds-ink-2);padding:9px 14px;min-height:44px;font:inherit;cursor:pointer;}
 .nudge-never{color:var(--ds-red);}
 .nudge-later:focus-visible,.nudge-never:focus-visible{outline:2px solid var(--ds-teal);outline-offset:2px;}
+.nudge-subtitle{color:var(--ds-ink-2);font-size:14px;margin:-4px 0 8px;}
