@@ -291,7 +291,7 @@ fetch('aartis.json')
     window.addEventListener('appinstalled', () => { state.installPrompt = null; render(); });
     render();
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
+      navigator.serviceWorker.register('sw.js').catch((err) => console.warn('SW registration failed', err));
     }
   })
   .catch(() => {
