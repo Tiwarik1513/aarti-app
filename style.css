@@ -88,3 +88,20 @@ a{color:var(--ds-teal);}
 .install-steps{margin:14px 0 0;color:var(--ds-ink-2);font-size:13px;line-height:1.6;}
 .install-note{margin:0;color:var(--ds-ink-2);font-size:14px;line-height:1.6;}
 @media(max-width:480px){.install-open{width:100%;}}
+
+/* donation nudge popup */
+.nudge-overlay{position:fixed;inset:0;background:rgba(38,34,31,.5);display:flex;align-items:center;justify-content:center;z-index:60;padding:16px;box-sizing:border-box;}
+.nudge-card{background:#fff;color:var(--ds-ink);max-width:430px;width:100%;border-radius:16px;padding:24px 22px 18px;box-shadow:0 12px 40px rgba(38,34,31,.25);}
+.nudge-title{font-size:21px;margin:0 0 8px;}
+.nudge-body{color:var(--ds-ink-2);font-size:14px;line-height:1.6;margin:0 0 16px;}
+.nudge-pay{display:flex;flex-direction:column;gap:12px;align-items:stretch;}
+.nudge-support{text-align:center;}
+.nudge-upi-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;}
+.nudge-upi-row code{font-size:14px;}
+.nudge-upi-row .copy-upi{margin-top:0;padding:6px 12px;min-height:38px;}
+.nudge-qr{display:flex;justify-content:center;}
+.nudge-qr img{width:120px;height:120px;image-rendering:pixelated;}
+.nudge-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px;}
+.nudge-later,.nudge-never{border:1px solid var(--ds-hairline);border-radius:10px;background:#fff;color:var(--ds-ink-2);padding:9px 14px;min-height:44px;font:inherit;cursor:pointer;}
+.nudge-never{color:var(--ds-red);}
+.nudge-later:focus-visible,.nudge-never:focus-visible{outline:2px solid var(--ds-teal);outline-offset:2px;}

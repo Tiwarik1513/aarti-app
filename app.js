@@ -282,12 +282,74 @@ function render() {
   window.scrollTo(0, 0);
 }
 
+
+/* ---------- donation nudge popup ---------- */
+const NUDGE_COUNT_KEY = 'aarti-opens.v1';
+const NUDGE_NEVER_KEY = 'aarti-donation-never.v1';
+const NUDGE_FIRST = [5, 10, 20];
+
+function nudgeShouldShow(count) {
+  if (store.get(NUDGE_NEVER_KEY, false)) return false;
+  if (NUDGE_FIRST.includes(count)) return true;
+  return count > 20 && count % 10 === 0;
+}
+
+function showDonationNudge(count) {
+  if (document.getElementById('nudge-overlay')) return;
+  const overlay = document.createElement('div');
+  overlay.className = 'nudge-overlay';
+  overlay.id = 'nudge-overlay';
+  overlay.innerHTML = `
+    <div class="nudge-card" role="dialog" aria-modal="true" aria-labelledby="nudge-title">
+      <h2 class="nudge-title" id="nudge-title">आरती संग्रह उपयोगी लगा?</h2>
+      <p class="nudge-body">यह ऐप मुफ़्त है और मुफ़्त ही रहेगा। आपने इसे ${count} बार खोला है - अगर यह आपके लिए उपयोगी है, तो चाहें तो UPI से थोड़ा सहयोग कर सकते हैं।</p>
+      <div class="nudge-pay">
+        <a class="donation-button nudge-support" href="${DONATION_LINK}" target="_blank" rel="noopener noreferrer">ऐप को सहयोग करें (UPI)</a>
+        <div class="nudge-upi-row"><span class="donation-label">UPI ID</span><code>${DONATION_UPI}</code><button type="button" class="copy-upi" id="nudge-copy">Copy</button></div>
+        <div class="nudge-qr"><img src="qr.png" alt="UPI payment QR for Gunja Tiwari"></div>
+      </div>
+      <div class="nudge-actions">
+        <button type="button" class="nudge-later" id="nudge-later">बाद में</button>
+        ${count >= 20 ? '<button type="button" class="nudge-never" id="nudge-never">दोबारा न पूछें</button>' : ''}
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+  const close = () => overlay.remove();
+  document.getElementById('nudge-later').addEventListener('click', close);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', function esc(e) { if (e.key === 'Escape') { close(); document.removeEventListener('keydown', esc); } });
+  const never = document.getElementById('nudge-never');
+  if (never) never.addEventListener('click', () => { store.set(NUDGE_NEVER_KEY, true); close(); });
+  document.getElementById('nudge-copy').addEventListener('click', async (e) => {
+    const btn = e.currentTarget;
+    let ok = false;
+    try { await navigator.clipboard.writeText(DONATION_UPI); ok = true; }
+    catch {
+      const f = document.createElement('textarea');
+      f.value = DONATION_UPI; f.style.position = 'fixed'; f.style.opacity = '0';
+      document.body.appendChild(f); f.select();
+      try { ok = document.execCommand('copy'); } catch {}
+      f.remove();
+    }
+    btn.textContent = ok ? 'Copied' : 'Copy';
+    if (ok) setTimeout(() => { btn.textContent = 'Copy'; }, 3000);
+  });
+}
+
+function maybeShowDonationNudge() {
+  const count = store.get(NUDGE_COUNT_KEY, 0) + 1;
+  store.set(NUDGE_COUNT_KEY, count);
+  if (!nudgeShouldShow(count)) return;
+  setTimeout(() => showDonationNudge(count), 1200);
+}
+
 {
     state.aartis = AARTIS_DATA;
     window.addEventListener('hashchange', render);
     window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); state.installPrompt = e; render(); });
     window.addEventListener('appinstalled', () => { state.installPrompt = null; render(); });
     render();
+    maybeShowDonationNudge();
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js').catch((err) => console.warn('SW registration failed', err));
     }
